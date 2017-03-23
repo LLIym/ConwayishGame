@@ -63,6 +63,19 @@ public class Cell implements Runnable {
                 updateCellInfo(System.currentTimeMillis(),1);
             }
 
+            if (birthtime!=-1 && liveCount<2){
+                updateCellInfo(System.currentTimeMillis(),0);
+            }
+
+            if (birthtime!=-1 && (liveCount==2 || liveCount==3)){
+                updateCellInfo(System.currentTimeMillis(),1);
+            }
+
+            if (birthtime!=-1 && liveCount>3){
+                updateCellInfo(System.currentTimeMillis(),0);
+            }
+
+
             long age = cur - birthtime;
             if (age > LIFE_PERIOD) {
                 System.out.println("Cell " + position + " is too old");
